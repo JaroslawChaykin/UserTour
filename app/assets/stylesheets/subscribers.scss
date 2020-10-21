@@ -1,0 +1,42 @@
+input::placeholder { color: #3265e8; }
+input::-moz-placeholder { color: #3265e8; }
+input::-webkit-input-placeholder { color: #3265e8; }
+
+
+
+
+.new_subscriber {
+  display: flex;
+  input {
+    outline: none;
+    font-size: 18px;
+    border-radius: 50px;
+  }
+  input[type='email'] {
+    width: 380px;
+    padding: 16px 20px;
+    border: 5px solid #3265E8;
+    color: #3265E8;
+    margin-right: 12px;
+  }
+  input[type='submit'] {
+    background: #3265e8 url("Union.png") no-repeat left;
+    padding: 16px 30px 16px 84px;
+    border: none;
+    height: 100%;
+    color: white;
+    cursor: pointer;
+    &:hover {
+      background: #4f7ff1 url("Union.png") no-repeat left;
+    }
+  }
+  .submit {
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+}
+
+
+
+
