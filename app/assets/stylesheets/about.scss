@@ -1,6 +1,3 @@
-// Place all the styles related to the About controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
 @font-face {
   font-family: 'Open Sans Bold';
   src: url("OpenSans-Bold.ttf");
@@ -21,25 +18,46 @@
   font-family: 'TTcommons regular';
   src: url("TTCommons-Regular.ttf");
 }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: fixed;
-  width: 100%;
-  height: 75px;
-  color: white;
-  max-width: 1024px;
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-}
-.back{
+.back {
   background-color: #0A5BD6;
-}
+.container {
+    max-width: 1110px;
+    margin: 0 auto;
+    height: 100%;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: fixed;
+      width: 100%;
+      height: 75px;
+      color: white;
+      max-width: 1110px;
+      .logo {
+        font-size: 32px;
+        font-family: 'Open Sans Bold', sans-serif;
+      }
+      .nav {
+        padding-bottom: 9px;
+        ul {
+          display: flex;
+          li {
+            list-style: none;
+            a {
+              text-decoration: none;
+              padding: 5px 15px;
+              color: white;
+              &:hover {
+                background: rgba(182, 182, 182, 0.1);
+                border-radius: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 .about {
   transform: translateY(100px);
 h1 {
@@ -130,6 +148,7 @@ h1 {
   max-width: 270px;
   font-family: 'TTcommons Black', sans-serif;
   color: white;
+}
 }
 }
 .bottom {
