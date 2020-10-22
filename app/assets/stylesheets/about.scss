@@ -1,3 +1,137 @@
 // Place all the styles related to the About controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url("OpenSans-Bold.ttf");
+}
+@font-face {
+  font-family: 'TTCommons Black';
+  src: url("TTCommons-Black.ttf");
+}
+@font-face {
+  font-family: 'TTCommons DemiBold';
+  src: url("TTCommons-DemiBold.ttf");
+}
+@font-face {
+  font-family: 'TTcommons bold';
+  src: url("TTCommons-Bold.ttf");
+}
+@font-face {
+  font-family: 'TTcommons regular';
+  src: url("TTCommons-Regular.ttf");
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: fixed;
+  width: 100%;
+  height: 75px;
+  color: white;
+  max-width: 1024px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+.back{
+  background-color: #0A5BD6;
+}
+.about {
+  transform: translateY(100px);
+h1 {
+  font-family: 'TTcommons bold', sans-serif;
+  font-size: 72px;
+  color: #fff;
+}
+.AFAnswer {
+  font-family: 'TTcommons regular', sans-serif;
+  font-size: 36px;
+  line-height: 41px;
+  margin-top: 121px;
+  color: #fff;
+  width: 700px;
+}
+.AAnswer {
+  font-family: 'TTcommons regular', sans-serif;
+  font-size: 36px;
+  line-height: 41px;
+  margin-top: 386px;
+  color: #fff;
+  width: 700px;
+}
+.AAnswerS {
+  font-family: 'TTcommons regular', sans-serif;
+  font-size: 36px;
+  transform: translateY(-36px);
+  line-height: 41px;
+  margin-top: 386px;
+  color: #fff;
+  width: 700px;
+}
+.BAnswer {
+  font-family: 'TTcommons DemiBold', sans-serif;
+  font-size: 36px;
+  line-height: 41px;
+  color: #FF6600;
+  margin-left: auto;
+  margin-right: 0em;
+  text-align: right;
+  margin-top: 386px;
+  width: 700px;
+}
+.picture-1 {
+  margin-top: 197px;
+  position: absolute;
+}
+.picture-2 {
+  margin-top: 295px;
+  margin-bottom: -729px;
+  margin-left: auto;
+  margin-right: 0em;
+  text-align: right;
+}
+.pic-frame {
+  position: relative;
+  padding: 1;
+}
+.arrow-1 {
+  position: absolute;
+  transform: translate3d(265px, 610px, 0);
+  z-index: -1;
+}
+.arrow-2 {
+  position: absolute;
+  transform: translate3d(118px, 595px, 0);
+  z-index: -2;
+}
+.alt-1 {
+  position: absolute;
+  transform: translate3d(-265px, -67px, 0);
+  max-width: 270px;
+  font-family: 'TTcommons Black', sans-serif;
+  color: white;
+}
+.alt-2 {
+  margin-bottom: -36px;
+
+  margin-left: auto;
+  margin-right: 0em;
+  text-align: right;
+  max-width: 270px;
+  font-family: 'TTcommons Black', sans-serif;
+  color: white;
+}
+.alt-3 {
+  position: absolute;
+  max-width: 270px;
+  font-family: 'TTcommons Black', sans-serif;
+  color: white;
+}
+}
+.bottom {
+  opacity: 0;
+}
