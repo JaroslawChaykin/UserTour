@@ -12,34 +12,60 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= form.label :author %>
-      <%= form.text_field :author %>
+    <div class="row">
+      <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </div>
+      <div class="field">
+        <%= form.label :author %>
+        <%= form.text_field :author %>
+      </div>
+      <div class="field">
+        <%= form.label :category_id %>
+        <%= form.select :category_id, Category.pluck(:name, :id) %>
+      </div>
+      <div class="field">
+        <%= form.label :timeBypass %>
+        <%= form.text_field :timeBypass %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title %>
+    <div class="row">
+      <div class="field">
+        <%= form.label :country %>
+        <%= form.text_field :country %>
+      </div>
+
+      <div class="field">
+        <%= form.label :city %>
+        <%= form.text_field :city %>
+      </div>
+
+      <div class="field">
+        <%= form.label :interests %>
+        <%= form.text_field :interests %>
+      </div>
+
+      <div class="field">
+        <%= form.label :price %>
+        <%= form.text_field :price %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= form.label :content %>
-      <%= form.text_area :content %>
+    <div class="row">
+      <div>
+        <%= form.label :content %>
+        <%= form.cktext_area :content %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= form.label :timeBypass %>
-      <%= form.text_field :timeBypass %>
-    </div>
-
-    <div class="field">
-      <%= form.label :price %>
-      <%= form.text_field :price %>
+    <div class="image">
+      <%= image_tag(@post.image.url, alt: 'Image') if @post.image? %>
     </div>
 
     <div class="field-image">
       <%= form.file_field :image %>
-      <%= form.label :image %>
     </div>
 
     <div class="field actions">

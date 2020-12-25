@@ -1,6 +1,6 @@
 <div class="comments-box">
   <p class="commentator">
-    <%= comment.commenter %>
+    <%= User.find(comment.user_id).username %>
   </p>
   <div class="comment-text">
     <p class="commentator-comment">
@@ -8,9 +8,11 @@
     </p>
 
     <p class="destroy-comment">
-      <%= link_to 'Destroy Comment', [comment.post, comment],
-                  :confirm => 'Are you sure?',
-                  :method => :delete %>
+      <% if user_signed_in? && current_user.id == comment.user_id  %>
+        <%= link_to 'Destroy Comment', [comment.post, comment],
+                    :confirm => 'Are you sure?',
+                    :method => :delete %>
+      <% end %>
     </p>
   </div>
 </div>

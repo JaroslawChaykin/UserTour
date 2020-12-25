@@ -1,18 +1,16 @@
+<style>
+    .header {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        color: white;
+    }
+  .header ul li a{
+      color: white !important;
+  }
+</style>
 <div class="promo">
-  <div class="container">
-    <div class="header">
-      <!--    <div class="random">-->
-      <div class="logo">UserTour</div>
-      <div class="nav">
-        <ul>
-          <li><%= link_to "About", about_path %></li>
-          <li><%= link_to "Promo", promo_path %></li>
-          <li><%= link_to "Posts", posts_path %></li>
-        </ul>
-      </div>
-      <!--    </div>-->
-    </div>
-  </div>
   <div class="bg bg-1">
     <div class="container">
       <div class="center">
@@ -46,7 +44,7 @@
       <div class="form-box">
         <div class="title">ПРИСОЕДИНИСЬ К СООБЩЕСТВУ ПУТЕШЕСТВЕННИКОВ</div>
         <div class="form">
-          <%= render "subscribers/form" %>
+          <%= render "subscribers/form"%>
         </div>
         <div class="footer">
           <ul>

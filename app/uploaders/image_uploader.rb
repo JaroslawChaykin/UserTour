@@ -3,11 +3,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   version :thumb do
-    process resize_to_fill: [1110, 350]
+    process resize_to_fill: [350, 350]
   end
   version :small_thumb, from_version: :thumb do
-    process resize_to_fill: [50, 50]
+    process resize_to_fill: [60, 60]
   end
+
+  # Для использования уменьшенных картинок
+  # <%= link_to(image_tag(@post.image.thumb.url, alt: 'Image'), @post.image.url, target: '_blank') if @post.image? %>
+
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog

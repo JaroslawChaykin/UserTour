@@ -1,36 +1,32 @@
-  <div class="back">
-    <div class="container">
-      <div class="header">
-    <!--    <div class="random">-->
-          <div class="logo">UserTour</div>
-          <div class="nav">
-            <ul>
-              <li><%= link_to "About", about_path %></li>
-              <li><%= link_to "Promo", promo_path %></li>
-              <li><%= link_to "Posts", posts_path %></li>
-            </ul>
-          </div>
-    <!--    </div>-->
+<div class="back">
+  <div class="container">
+    <div class="about">
+      <h1>О нас</h1>
+      <p class="AFAnswer">Наш сервис создан для тех путешественников, которым также, как и нам не нравятся экскурсии с толпами людей, ограниченностью передвижения и скованности по времени. </p>
+      <div class="pic-frame">
+        <div class="picture-1"> <%= image_tag "1.png"%> </div>
       </div>
-            <div class="about">
-              <h1>О нас</h1>
-              <p class="AFAnswer">Наш сервис создан для тех путешественников, которым также, как и нам не нравятся экскурсии с толпами людей, ограниченностью передвижения и скованности по времени. </p>
-              <div class="pic-frame">
-                <div class="picture-1"> <%= image_tag "1.png"%> </div>
-              </div>
-              <div class="arrow-1"> <%= image_tag "Arrow 5.svg"%> <h4 class="alt-1">Большое разнообразие туров с&nbsp;разными фишками и&nbsp;ключевыми местами</h4> </div>
-              <p class="BAnswer">&mdash;&nbsp;Но&nbsp;ведь находить места для посещения и&nbsp;отдыха самостоятельно порой бывает очень сложно!</p>
-              <div class="pic-frame">
-                <div class="picture-2"> <%= image_tag "2.png"%> <h4 class="alt-2">Подбор оптимального маршрута по&nbsp;деньгам, времени и&nbsp;интересам</h4> </div>
-              </div>
-                <div class="arrow-2"> <%= image_tag "Arrow 6.svg"%> </div>
-              <p class="AAnswerS">&mdash;&nbsp;В&nbsp;нашем приложении, местные жители или опытные туристы сами составят для вас маршрут, в&nbsp;который будут включены лучшие заведения, достопримечательности, и&nbsp;даже гостиницы</p>
-              <div class="pic-frame">
-                <div class="picture-1"> <%= image_tag "3.png"%> <h4 class="alt-3">Подбор оптимального маршрута по&nbsp;деньгам, времени и&nbsp;интересам</h4>  </div>
-              </div>
-              <p class="BAnswer">&mdash;&nbsp;А&nbsp;если мне не&nbsp;подойдет предложенный маршрут? Например я&nbsp;не&nbsp;люблю шумные, тусовочные места и&nbsp;терпеть не&nbsp;могу пьяные компании. Я&nbsp;просто хочу насладится видами и&nbsp;тишиной.</p>
-              <p class="AAnswer">&mdash;&nbsp;Маршрутов будет много и&nbsp;все они будут разделены на&nbsp;категории по&nbsp;интересам и&nbsp;стоимости. У&nbsp;каждого маршрута будет своя оценка и&nbsp;отзывы.</p>
-            </div>
+      <div class="arrow-1"> <%= image_tag "Arrow 5.svg"%> <h4 class="alt-1">Большое разнообразие туров с&nbsp;разными фишками и&nbsp;ключевыми местами</h4> </div>
+      <p class="BAnswer">&mdash;&nbsp;Но&nbsp;ведь находить места для посещения и&nbsp;отдыха самостоятельно порой бывает очень сложно!</p>
+      <div class="pic-frame">
+        <div class="picture-2"> <%= image_tag "2.png"%> <h4 class="alt-2">Подбор оптимального маршрута по&nbsp;деньгам, времени и&nbsp;интересам</h4> </div>
+      </div>
+      <div class="arrow-2"> <%= image_tag "Arrow 6.svg"%> </div>
+      <p class="AAnswerS">&mdash;&nbsp;В&nbsp;нашем приложении, местные жители или опытные туристы сами составят для вас маршрут, в&nbsp;который будут включены лучшие заведения, достопримечательности, и&nbsp;даже гостиницы</p>
+      <div class="pic-frame">
+        <div class="picture-1"> <%= image_tag "3.png"%> <h4 class="alt-3">Подбор оптимального маршрута по&nbsp;деньгам, времени и&nbsp;интересам</h4>  </div>
+      </div>
+      <p class="BAnswer">&mdash;&nbsp;А&nbsp;если мне не&nbsp;подойдет предложенный маршрут? Например я&nbsp;не&nbsp;люблю шумные, тусовочные места и&nbsp;терпеть не&nbsp;могу пьяные компании. Я&nbsp;просто хочу насладится видами и&nbsp;тишиной.</p>
+      <p class="AAnswer">&mdash;&nbsp;Маршрутов будет много и&nbsp;все они будут разделены на&nbsp;категории по&nbsp;интересам и&nbsp;стоимости. У&nbsp;каждого маршрута будет своя оценка и&nbsp;отзывы.</p>
     </div>
-  <div class="bottom"></div>
   </div>
+</div>
+
+<style>
+  .header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+  }
+</style>

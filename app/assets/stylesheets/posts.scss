@@ -1,172 +1,143 @@
-
 .posts {
-  .container {
-    max-width: 1110px;
-    margin: 0 auto;
-    height: 100%;
-    .show-box {
-      padding-top: 120px;
-      padding-bottom: 120px;
-      .comment-box {
-        display: flex;
-        flex-direction: column;
-        .add-comment {
-          order: -1;
-        }
-      }
-      .post-content {
-        display: flex;
-        margin-bottom: 100px;
-        .image {
-          max-width: 350px;
-          min-width: 350px;
-          img {
-            max-width: 350px;
-          }
-        }
-        .post-information {
-          padding-left: 20px;
-          p {
-            margin-top: 10px;
-          }
-        }
-      }
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .title-text {
+      font-size: 32px;
+      font-weight: bold;
     }
-    .box-change {
-      padding-top: 120px;
-      padding-bottom: 120px;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      position: fixed;
-      width: 100%;
-      height: 75px;
-      color: black;
-      max-width: 1110px;
-      .logo {
-        font-size: 32px;
-        font-family: 'Open Sans Bold', sans-serif;
-      }
-      .nav {
-        padding-bottom: 9px;
-        ul {
-          display: flex;
-          li {
-            list-style: none;
-            a {
-              text-decoration: none;
-              padding: 5px 15px;
-              color: black;
-              border-radius: 25px;
-              &:hover {
-                background: rgba(182, 182, 182, 0.1);
-              }
-            }
-            .new-post {
-              background: #3265e8;
-              color: white;
-              &:hover {
-                background: #4f7ff1;
-              }
-            }
-          }
-        }
-      }
-    }
-    .field {
-      display: flex;
-      flex-direction: column;
-      margin-top: 20px;
-      max-width: 400px;
-      background: #3265E8;
-      border-radius: 5px;
-      label {
-        padding: 5px 15px;
-      }
-      input, textarea {
-        padding: 5px 15px;
-        outline: none;
-        border: 1px solid #3265E8;
-        border-radius: 5px;
-      }
-      textarea {
-        max-width: 400px;
-        max-height: 300px;
-        min-width: 200px;
-        min-height: 100px;
-      }
-    }
-    .field-image {
-      input {
-        width: 0.1px;
-        height: 0.1px;
-        opacity: 0;
-        overflow: hidden;
-        position: absolute;
-        z-index: -1;
-      }
-      input + label {
-        font-size: 1.25em;
-        width: 100%;
-        text-align: center;
-        font-weight: 700;
-        padding: 15px;
-        margin-top: 20px;
-        color: #3265E8;
-        border: 1px solid #3265E8;
-        display: inline-block;
-        cursor: pointer;
-        max-width: 400px;
-      }
-      input:focus + label,
-      input + label:hover {
-        background-color: #f5f5f5;
+    .title-category {
+      a {
+        color: black;
       }
     }
   }
-  .posts-box {
-    padding-top: 120px;
-  }
-  table {
-    margin-top: 20px;
-    width: 100%;
-    .head-row th{
-      background: #082e93;
+  .category {
+    display: flex;
+    max-height: 100px;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    flex-wrap: wrap;
+    a {
+      text-decoration: none;
+      margin: 2px;
       color: white;
-      padding: 5px;
+      background: #1c1c1c;
+      padding: 3px 8px;
     }
-    .body-row {
-      color: black;
-      .table-content {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200px;
-      }
-      &:nth-child(odd) {
-        background: #3265e8;
-        color: white;
-      }
-      td {
-        padding: 5px;
-        border-right: 1px solid #e3e3e3;
-      }
-      .change {
-        max-width: 40px;
-        text-align: center;
-        background: #a2a2a285;
-        padding: 5px;
-        margin: 4px;
-        a {
-          color: white;
-          text-decoration: none;
-          transition: 0.3s ease-in-out;
+  }
+  .box-change {
+    .row {
+      display: flex;
+      margin-bottom: 20px;
+      .field {
+        margin-right: 15px;
+        label {
+          display: block;
         }
-        &:hover {
-          background: rgb(50, 101, 232);
+        input {
+          max-width: 300px;
+          height: 30px;
+          padding: 5px;
+          border: 1px solid #cbcbcb;
+          border-radius: 5px;
+        }
+        select {
+          max-width: 300px;
+          width: 185px;
+          height: 30px;
+          padding: 5px;
+          border: 1px solid #cbcbcb;
+          border-radius: 5px;
+          background: none;
+        }
+      }
+    }
+  }
+  .card-posts {
+    display: flex;
+    flex-wrap: wrap;
+    .card-post {
+      width: 20%;
+      .card-box {
+        margin: 5px;
+        border: 1px solid black;
+        padding: 5px;
+        border-radius: 10px;
+        .up-info {
+          display: flex;
+          justify-content: space-between;
+          .reviews-rating {
+            display: flex;
+            align-items: flex-end;
+            .up-info__rating {
+              font-size: 14px;
+              font-weight: bold;
+              margin-right: 5px;
+            }
+            .up-info__reviews {
+              font-size: 10px;
+              text-decoration: underline;
+            }
+          }
+          .up-info__username {
+            font-size: 12px;
+            color: #7A7A7A;
+          }
+        }
+        .about-tour-info {
+          margin-top: 10px;
+          font-size: 12px;
+          margin-bottom: 10px;
+          .about-tour-info__city {
+            font-size: 24px;
+            font-weight: 600;
+          }
+          .about-tour-info__time-by-pass {
+            margin-bottom: 30px;
+          }
+        }
+        .price-info {
+          .price-info__price {
+            font-size: 20px;
+          }
+        }
+        .admin-change {
+          display: flex;
+          justify-content: space-between;
+          border-top: 1px solid #dcdcdc;
+
+          .change {
+            width: 100%;
+            text-align: center;
+            a {
+              color: black;
+            }
+            &:nth-child(2) {
+              border-right: 1px solid #dcdcdc;
+              border-left: 1px solid #dcdcdc;
+            }
+          }
+        }
+      }
+    }
+  }
+  .header-post {
+    text-align: right;
+    .nav {
+      display: flex;
+      margin-bottom: 20px;
+      a {
+        padding-right: 15px;
+        padding-left: 15px;
+        text-decoration: none;
+        color: black;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+        &:last-child {
+          border-right: 0;
         }
       }
     }

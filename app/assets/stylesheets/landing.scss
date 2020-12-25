@@ -1,0 +1,252 @@
+@font-face {
+  font-family: 'SuisseIntl-regular';
+  src: url("SuisseIntl-Regular.otf");
+}
+@font-face {
+  font-family: 'SuisseIntl-medium';
+  src: url("SuisseIntl-Medium.otf");
+}
+@font-face {
+  font-family: 'SuisseIntl-book';
+  src: url("SuisseIntl-Book.otf");
+}@font-face {
+  font-family: 'SuisseIntl-bold';
+  src: url("SuisseIntl-Bold.otf");
+}
+
+
+
+.home .container {
+  max-width: 1294px !important;
+}
+.home {
+  .title {
+    margin-top: 140px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .title-text {
+      font-family: 'SuisseIntl-medium', sans-serif;
+      font-size: 71px;
+    }
+  }
+  .chapter {
+    margin-top: 200px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    .chapter-border {
+      width: 350px;
+      height: 350px;
+      border-radius: 35px;
+      border: 1px solid black;
+      padding: 48px;
+      transform: rotate(45deg);
+      .chapter-block {
+        width: 100%;
+        height: 100%;
+        background: #FFEB3C;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .chapter-title {
+          font-size: 36px;
+          transform: rotate(-45deg);
+          text-align: center;
+          font-family: 'SuisseIntl-medium', sans-serif;
+        }
+      }
+    }
+  }
+  .phone-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .phone-box__title {
+      font-size: 48px;
+      font-family: 'SuisseIntl-book', sans-serif;
+    }
+    .phone-title-36 {
+      font-size: 36px;
+    }
+  }
+  .mb-100 {
+    margin-bottom: 100px;
+  }
+  .how-work {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 45px;
+    .how-work-box {
+        margin: 10px;
+      .how-work-box__circle {
+        margin-bottom: 70px;
+        text-align: center;
+      }
+      .how-work-box__text {
+        font-size: 24px;
+        font-family: 'SuisseIntl-book', sans-serif;
+      }
+    }
+  }
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 140px;
+    .week-tour {
+      width: 33.33333%;
+      .week-box {
+        margin: 5px;
+        border: 7px solid #3356D1;
+        border-radius: 15px;
+        overflow: hidden;
+        .week-box__image {
+          position: relative;
+          .week-box__rating {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 25px;
+            .rating__background {
+              width: 125px;
+              height: 125px;
+              background-size: cover;
+              position: relative;
+              .rating-text {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                right: 0;
+                z-index: 2;
+                font-size: 48px;
+              }
+            }
+            .rating-red {
+              background: url("home/rating-red.svg");
+            }
+            .rating-yellow {
+              background: url("home/rating-yellow.svg");
+            }
+            .rating-green {
+              background: url("home/rating-green.svg");
+            }
+          }
+        }
+        .post-information {
+          padding: 12px 25px;
+          font-size: 16px;
+          .post-information__city {
+            margin-bottom: 12px;
+            display: flex;
+            .city-block-border {
+              border: 1px solid black;
+              padding: 2px;
+              .city-block {
+                border: 1px solid black;
+                background: #3356D1;
+                padding: 4px 14px;
+                font-size: 24px;
+                color: white;
+                letter-spacing: 1px;
+                font-family: 'SuisseIntl-medium', sans-serif;
+              }
+            }
+          }
+          .post-information__duration-review {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            .post-information__duration {
+              font-family: 'SuisseIntl-book', sans-serif;
+            }
+            .post-information__review {
+              font-size: 12px;
+              text-decoration: underline;
+              font-family: 'SuisseIntl-book', sans-serif;
+            }
+          }
+          .post-information__description {
+            font-family: 'SuisseIntl-regular', sans-serif;
+            margin-bottom: 35px;
+            height: 70px;
+          }
+          .post-information__interests {
+            font-family: 'SuisseIntl-bold', sans-serif;
+            margin-bottom: 8px;
+          }
+          .post-information__price-go {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            .post-information__price {
+              height: 100%;
+            }
+            .post-information__go {
+              padding: 4px 14px;
+              border: 6px solid #3456D1;
+              border-radius: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    background: black;
+    .footer-box {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        color: white;
+        .info-title {
+          font-size: 48px;
+          font-family: 'SuisseIntl-medium', sans-serif;
+        }
+        .registration-title {
+          font-size: 32px;
+          font-family: 'SuisseIntl-medium', sans-serif;
+        }
+        .registration-button  {
+          margin-top: 30px;
+          a {
+            padding: 10px 50px;
+            border: 5px solid #3356D1;
+            background: white;
+            border-radius: 15px;
+            font-size: 22px;
+            color: black;
+            text-decoration: none;
+            font-family: 'SuisseIntl-medium', sans-serif;
+          }
+        }
+        .socnet-title {
+          font-size: 24px;
+        }
+        .socnet-list {
+          ul {
+            li {
+              list-style: none;
+              a {
+                font-size: 18px;
+                text-decoration: none;
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

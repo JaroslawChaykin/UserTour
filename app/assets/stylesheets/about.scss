@@ -20,46 +20,9 @@
 }
 .back {
   background-color: #0A5BD6;
-.container {
-    max-width: 1110px;
-    margin: 0 auto;
-    height: 100%;
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      position: fixed;
-      width: 100%;
-      height: 75px;
-      color: white;
-      max-width: 1110px;
-      .logo {
-        font-size: 32px;
-        font-family: 'Open Sans Bold', sans-serif;
-      }
-      .nav {
-        padding-bottom: 9px;
-        ul {
-          display: flex;
-          li {
-            list-style: none;
-            a {
-              text-decoration: none;
-              padding: 5px 15px;
-              color: white;
-              &:hover {
-                background: rgba(182, 182, 182, 0.1);
-                border-radius: 25px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  padding-top: 100px;
 
 .about {
-  transform: translateY(100px);
 h1 {
   font-family: 'TTcommons bold', sans-serif;
   font-size: 72px;
@@ -96,7 +59,7 @@ h1 {
   line-height: 41px;
   color: #FF6600;
   margin-left: auto;
-  margin-right: 0em;
+  margin-right: 0;
   text-align: right;
   margin-top: 386px;
   width: 700px;
@@ -106,15 +69,12 @@ h1 {
   position: absolute;
 }
 .picture-2 {
-  margin-top: 295px;
-  margin-bottom: -729px;
-  margin-left: auto;
-  margin-right: 0em;
+  margin: 295px 0em -729px auto;
   text-align: right;
 }
 .pic-frame {
   position: relative;
-  padding: 1;
+  padding: 1px;
 }
 .arrow-1 {
   position: absolute;
@@ -135,9 +95,8 @@ h1 {
 }
 .alt-2 {
   margin-bottom: -36px;
-
   margin-left: auto;
-  margin-right: 0em;
+  margin-right: 0;
   text-align: right;
   max-width: 270px;
   font-family: 'TTcommons Black', sans-serif;
@@ -150,10 +109,4 @@ h1 {
   color: white;
 }
 }
-}
-.bottom {
-  opacity: 0;
-  height: 300px;
-  width: 100%;
-  background-color: red;
 }

@@ -1,0 +1,24 @@
+<div class="user-profile">
+  <div class="container">
+    <h4>Users</h4>
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Username</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to user.email, user %></td>
+          <td><%= user.username %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
