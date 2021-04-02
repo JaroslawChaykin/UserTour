@@ -30,5 +30,7 @@
     <% else %>
         <%# можно добавить кнопку для регистрации или что-нибудь ещё  %>
     <% end%>
+
+    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
   </div>
 </div>

@@ -31,21 +31,23 @@
     height: 100%;
 }
 .header {
-    height: 100px;
-    color: black;
+    background: #3456D1;
+}
+.header[data-react-class="M_header"] {
+    height: 100%;
 }
 .header .header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
+    height: 100px;
 }
 .header .header-row__logo {
-    font-size: 32px;
-    font-family: 'Open Sans Bold', sans-serif;
+    display: flex;
+    align-items: center;
 }
 .header .header-row__link-list {
-    padding-bottom: 9px;
+
 }
 .header .header-row ul {
     display: flex;
@@ -54,14 +56,16 @@
     list-style: none;
     margin-left: 5px;
     margin-right: 5px;
+    font-size: 24px;
 }
 .header .header-row ul li:last-child {
     margin-right: 0;
 }
 .header .header-row ul li a {
+    display: block;
     text-decoration: none;
     padding: 5px 15px;
-    color: black;
+    color: white;
     border-radius: 25px;
 }
 .header .header-row ul li a:hover {
@@ -73,4 +77,30 @@
 }
 .header .header-row ul li .new-post:hover {
     background: #4f7ff1;
+}
+.header-row__authentication a{
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+.notice {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 5px 15px;
+    margin: 20px;
+    background: #8ddc95;
+    border: 1px solid #0d5f15;
+}
+.header .button {
+    padding: 8px 17px;
+    border-radius: 32px;
+    border: 5px solid transparent;
+    margin: 0 10px;
+}
+.header .button-sign-in {
+    background: black;
+}
+.header .button-sign-up {
+    border: 5px solid white;
 }

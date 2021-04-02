@@ -17,45 +17,13 @@
 
   <body>
     <div class="header">
-      <div class="header-to-login">
-        <div class="container">
-          <div class="header-row">
-            <div class="header-to-login">
-              <% if user_signed_in? %>
-                <%= link_to 'Your Profile', current_user %> or <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-              <% else %>
-                <%= link_to 'Sign In', new_user_session_path %> or
-                <%= link_to 'Sign Up', new_user_registration_path %>
-              <% end %>
-            </div>
-            <div class="categories-bar">
-              <% if user_signed_in? && current_user.isadmin == true %>
-                <%= link_to 'Categories', categories_path %>
-                <%= link_to 'Users', users_path %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="header-row">
-          <div class="header-row__logo">UserTour</div>
-<!--          <div class="categ">-->
-            <%# Category.where(display_in_navbar: true).each do |cat| %>
-              <%#= link_to cat.name, posts_path(category: cat.name) %>
-            <%# end %>
-<!--          </div>-->
-          <div class="header-row__link-list">
-            <ul>
-              <li><%= link_to "Home", home_path %></li>
-              <li><%= link_to "About", about_path %></li>
-              <li><%= link_to "Promo", promo_path %></li>
-              <li><%= link_to "Posts", posts_path %></li>
-              <li><%= link_to 'New Post', new_post_path, class: 'new-post'%></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <% if user_signed_in? %>
+        <%  logo = image_tag "logo.svg"%>
+        <%  currentUser = current_user;  destroyUserSession = destroy_user_session_path %>
+        <%= react_component 'M_header', {logo: logo,authentication: false, userLink: currentUser, signOut: destroyUserSession} %>
+      <% else %>
+        <%= react_component 'M_header', {logo: logo,authentication: true} %>
+      <% end %>
     </div>
     <div class="main">
       <%= yield %>
