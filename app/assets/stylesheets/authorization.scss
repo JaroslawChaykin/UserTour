@@ -28,6 +28,11 @@
       width: 100%;
     }
   }
+  #error_explanation {
+    h2 {
+      font-size: 26px;
+    }
+  }
   .right {
     display: flex;
     flex-direction: column;
@@ -46,6 +51,7 @@
         font-size: 18px;
         outline: none;
         margin-bottom: 50px;
+        background: none;
       }
     }
     .log-in-btn, .registration-btn {
@@ -57,6 +63,11 @@
         background: #4F6DDB;
         font-size: 28px;
         font-weight: bold;
+      }
+    }
+    .resend {
+      input {
+        width: 100%;
       }
     }
   }
