@@ -1,13 +1,9 @@
 <div class="posts">
   <div class="container">
-    <div class="header-post">
-      <div class="nav">
-        <%= link_to 'Show Post', @post %>
-        <%= link_to 'Back to Posts', posts_path %>
-      </div>
-    </div>
+    <% if current_user.id == @post.user_id || current_user.isadmin == true %>
+      <%= render 'form', post: @post %>
+    <% end %>
 
-    <%= render 'form', post: @post %>
 
   </div>
 </div>

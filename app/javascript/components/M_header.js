@@ -12,15 +12,16 @@ class M_header extends React.Component {
         if (this.props.authentication) {
             return (
                 <div className={'header-row__authentication'}>
-                    <a href='/users/sign_in' className={'button button-sign-in'}>Вход</a>
-                    <a href='/users/sign_up' className={'button button-sign-up'}>Регистрация</a>
+                    <a href='/users/sign_in' className={'button button-sign-in'}>Войти</a>
+                    <a href='/users/sign_up' className={'button button-sign-up'}>Зарегистрироваться</a>
                 </div>
             )
         } else {
             return (
                 <div className={'header-row__authentication'}>
                     <a href={`/users/${this.userLink.id}/`} className={'button button-username'}>{this.userLink.username}</a>
-                    <a rel="nofollow" data-method={'delete'} href='users/sign_out' className={'button button-sign-out'}>Выход</a>
+                    {/*<a rel="nofollow" data-method={'delete'} href='users/sign_out' className={'button button-sign-out'}>Выход</a>*/}
+                    <div className={"user-avatar"}/>
                 </div>
             )
         }
@@ -29,19 +30,20 @@ class M_header extends React.Component {
     render() {
 
     return (
-        <div className={'container'}>
+        <div className={'container-header'}>
 
           <div className={"header-row"}>
-            <div className={"header-row__logo"}>
-                <img src='/assets/logo-156824fa44c19b6588f73fd1a634424b40a6f09114715b0c4f723adb78c0275e.svg' />
-            </div>
-            <div className={"header-row__link-list"}>
-                <ul>
-                    <li><a href='/home'>Главная</a></li>
-                    <li><a href='/posts'>Туры</a></li>
-                    <li><a href='/about'>О нас</a></li>
-                    <li><a href='/promo'>Промо</a></li>
-                </ul>
+            <div className={"left"}>
+                <div className={"header-row__logo"}>
+                    <img src='/assets/logo-156824fa44c19b6588f73fd1a634424b40a6f09114715b0c4f723adb78c0275e.svg' />
+                </div>
+                <div className={"header-row__link-list"}>
+                    <ul>
+                        <li><a href='/home'>Главная</a></li>
+                        <li><a href='/about'>О нас</a></li>
+                        <li><a href='/posts'>Туры</a></li>
+                    </ul>
+                </div>
             </div>
               {this.authenticationCheck()}
           </div>

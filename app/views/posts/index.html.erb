@@ -1,58 +1,32 @@
 <div class="posts">
   <div class="container">
-    <div class="title">
-      <div class="title-text">Posts</div>
+    <div class="posts-header">
+
     </div>
-    <h4>All Categories</h4>
-    <div class="category">
-      <% Category.all.each do |cat| %>
-        <%= link_to cat.name, posts_path(category: cat.name) %>
-      <% end %>
-    </div>
+
+<!--    <div class="category">-->
+      <%# Category.where(display_in_navbar: true).each do |cat| %>
+        <%#= link_to cat.name, request.params.merge(category: cat.id) %>
+      <%# end %>
+
+      <%#= link_to "Reset", posts_path %>
+
+
+      <%# User.all.each do |user| %>
+<!--        <%#= link_to user.username, request.params.merge(user: user.id)  %> |-->
+      <%# end %>
+<!--    </div>-->
+
     <div class="card-posts">
       <% @posts.each do |post| %>
         <div class="card-post">
-          <div class="card-box">
-            <div class="up-info">
-              <div class="reviews-rating">
-                <div class="up-info__rating"><%= post.likes.count %></div>
-                <div class="up-info__reviews">
-                  отзывов:
-                <span>
-                  <%= post.comments.count %>
-                </span>
-                </div>
-              </div>
-              <div class="up-info__username">@<%= post.author %></div>
-            </div>
-            <div class="about-tour-info">
-              <div class="about-tour-info__city"><%= post.city %></div>
-              <div class="about-tour-info__time-by-pass"><%= post.timeBypass %></div>
-              <div class="about-tour-info__interested"><%= post.category.name %></div>
-            </div>
-            <div class="price-info">
-              <div class="price-info__price">~<%= post.price %></div>
-            </div>
-            <div class="admin-change">
-              <div class="change"><%= link_to 'S', post %></div>
-              <div class="change"><%= link_to 'E', edit_post_path(post) %></div>
-              <div class="change"><%= link_to 'D', post, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-            </div>
+          <%= react_component 'A_tourCard', {title: post.title, description: post.description, image: post.image.thumb.url}%>
+          <div class="card-post-btn">
+            <%= react_component 'A_priceTag', {price: post.price, color: '#4F6DDB' }%>
+            <%= react_component 'A_blueButton', {id: post.id}%>
           </div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-
-
-
-
-
-<%# @posts.each do |post| %>
-<!--          <tr class="body-row">-->
-<!--            <td><%#= post.title %></td>-->
-<!--            <td class="table-content"><%#= post.content %></td>-->
-
-<!--          </tr>-->
-<%# end %>

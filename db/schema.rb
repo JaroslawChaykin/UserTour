@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_23_162456) do
+ActiveRecord::Schema.define(version: 2021_06_25_145307) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_162456) do
     t.string "interests"
     t.integer "user_id", null: false
     t.integer "category_id", null: false
+    t.string "description"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -100,6 +101,8 @@ ActiveRecord::Schema.define(version: 2020_12_23_162456) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.boolean "isadmin", default: false
+    t.string "avatar"
+    t.string "interests"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -18,11 +18,10 @@
   <body>
     <div class="header">
       <% if user_signed_in? %>
-        <%  logo = image_tag "logo.svg"%>
         <%  currentUser = current_user;  destroyUserSession = destroy_user_session_path %>
-        <%= react_component 'M_header', {logo: logo,authentication: false, userLink: currentUser, signOut: destroyUserSession} %>
+        <%= react_component 'M_header', {authentication: false, userLink: currentUser, signOut: destroyUserSession} %>
       <% else %>
-        <%= react_component 'M_header', {logo: logo,authentication: true} %>
+        <%= react_component 'M_header', {authentication: true} %>
       <% end %>
     </div>
     <div class="main">

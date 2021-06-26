@@ -1,24 +1,63 @@
-.authorization {
-
-  text-align: center;
-  .field {
-    input {
-      max-width: 300px;
-      height: 30px;
-      padding: 5px;
-      border: 1px solid #cbcbcb;
-      border-radius: 5px;
-    }
-    input[type="checkbox"] {
-      height: auto;
+.authorization, .registration {
+  .links {
+    margin-top: 50px;
+    text-align: center;
+    a {
+      display: block;
+      color: #5B5B5B;
+      text-decoration: none;
+      margin-bottom: 25px;
     }
   }
-  .actions {
-    input {
-      padding: 4px 14px;
-      background: none;
-      border: 1px solid black;
-      border-radius: 5px;
+  input::-webkit-input-placeholder { color: #5B5B5B; }
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  .left {
+    width: 50%;
+    a {
+      img {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 50px;
+        left: 50px;
+      }
+    }
+    img {
+      width: 100%;
+    }
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 115px;
+    h2 {
+      font-size: 48px;
+      margin-bottom: 75px;
+    }
+    .inputs {
+      input {
+        width: 350px;
+        border: none;
+        border-bottom: 2px solid #4F6DDB;
+        padding: 12px 57px;
+        font-size: 18px;
+        outline: none;
+        margin-bottom: 50px;
+      }
+    }
+    .log-in-btn, .registration-btn {
+      input {
+        border-radius: 38px;
+        padding: 10px 60px;
+        color: #fff;
+        border: none;
+        background: #4F6DDB;
+        font-size: 28px;
+        font-weight: bold;
+      }
     }
   }
 }

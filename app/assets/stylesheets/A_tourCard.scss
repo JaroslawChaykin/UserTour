@@ -1,0 +1,40 @@
+.tour-card {
+  padding: 5px;
+  background: #4F6DDB;
+  max-width: 550px;
+  border-radius: 30px;
+  margin-top: 20px;
+  .tour-card-box {
+    border: 10px solid #fff;
+    border-radius: 30px;
+    overflow: hidden;
+    .tour-image {
+      max-height: 210px;
+      overflow: hidden;
+      img {
+        margin-top: -25%;
+        width: 550px;
+        min-height: 400px;
+        background: url("logo.svg");
+      }
+    }
+    .tour-information {
+      height: 150px;
+      border-top: 10px solid #fff;
+      padding: 10px 15px;
+      color: white;
+      .tour-title {
+        font: {
+          size: 24px;
+          weight: bold;
+        }
+      }
+      .tour-description {
+        font: {
+          size: 18px;
+        }
+      }
+    }
+  }
+
+}

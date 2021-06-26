@@ -1,0 +1,46 @@
+.edit-profile {
+  margin-top: 35px;
+  input::-webkit-input-placeholder { color: #4F6DDB; }
+  .edit-header {
+    display: flex;
+    justify-content: space-between;
+    h2 {
+      font-size: 32px;
+    }
+    .edit-btn {
+      display: flex;
+      input[type="submit"] {
+        cursor: pointer;
+        background: #4F6DDB;
+        padding: 10px 20px;
+        font-size: 20px;
+        border-radius: 10px;
+        margin-left: 12px;
+        border: none;
+        color: #fff;
+      }
+    }
+  }
+  .fields {
+    margin-top: 50px;
+    .field {
+      margin-top: 25px;
+    }
+  }
+  input {
+    background: #fff;
+    border: 3px solid #4F6DDB;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 16px 22px;
+    outline: none;
+    color: #4F6DDB;
+  }
+  .delete-profile {
+    margin-top: 50px;
+    input {
+      border-color: #AD0008;
+      color: #AD0008;
+    }
+  }
+}

@@ -14,51 +14,47 @@
 
     <div class="row">
       <div class="field">
-        <%= form.label :title %>
-        <%= form.text_field :title %>
+        <%= form.text_field :title, placeholder: 'Заголовок' %>
       </div>
       <div class="field">
-        <%= form.label :author %>
-        <%= form.text_field :author %>
-      </div>
-      <div class="field">
-        <%= form.label :category_id %>
         <%= form.select :category_id, Category.pluck(:name, :id) %>
       </div>
       <div class="field">
-        <%= form.label :timeBypass %>
-        <%= form.text_field :timeBypass %>
+        <%= form.text_field :timeBypass, placeholder: 'Время прохождения' %>
       </div>
     </div>
 
     <div class="row">
       <div class="field">
-        <%= form.label :country %>
-        <%= form.text_field :country %>
+        <%= form.text_field :country, placeholder: 'Страна' %>
       </div>
 
       <div class="field">
-        <%= form.label :city %>
-        <%= form.text_field :city %>
+        <%= form.text_field :city, placeholder: 'Город' %>
       </div>
 
       <div class="field">
-        <%= form.label :interests %>
-        <%= form.text_field :interests %>
+        <%= form.text_field :interests, placeholder: 'Кому интересно?' %>
       </div>
 
       <div class="field">
-        <%= form.label :price %>
-        <%= form.text_field :price %>
+        <%= form.text_field :price, placeholder: 'Затраченная сумма' %>
+      </div>
+      <div class="row">
+        <div class="field">
+          <%= form.text_field :description, placeholder: 'Короткое описание' %>
+        </div>
       </div>
     </div>
+
+
 
     <div class="row">
       <div>
-        <%= form.label :content %>
         <%= form.cktext_area :content %>
       </div>
     </div>
+
 
     <div class="image">
       <%= image_tag(@post.image.url, alt: 'Image') if @post.image? %>

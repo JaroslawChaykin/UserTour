@@ -1,101 +1,1170 @@
 <div class="posts">
   <div class="container">
-    <div class="header-post">
-      <div class="nav">
-        <% if user_signed_in? %>
-          <%= link_to 'Edit', edit_post_path(@post) %>
-        <% end %>
-      </div>
-    </div>
-
-    <% if user_signed_in? %>
-      <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-      <% if pre_like %>
-        <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
-      <% else %>
-        <%= button_to 'Like', post_likes_path(@post), method: :post %>
-      <% end %>
-    <% end %>
-
-    <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-    <% if user_signed_in? %>
-      <% pre_favorite = @post.favorites.find { |favorite| favorite.user_id == current_user.id} %>
-      <% if pre_favorite %>
-        <%= button_to 'Remove from Favorite', post_favorite_path(@post, pre_favorite), method: :delete %>
-      <% else %>
-        <%= button_to 'Add to Favorite', post_favorites_path(@post), method: :post %>
-      <% end %>
-    <% end %>
-
 
     <div class="show-box">
-      <div class="post-content">
-        <div class="image">
-          <%= image_tag(@post.image.url, alt: 'Image') if @post.image? %>
-        </div>
+      <div class="post-header">
+
         <div class="post-information">
-          <p>
-            <strong>Author:</strong>
-            <%= @post.author %>
-          </p>
+          <div class="image">
+            <%= image_tag(@post.image.url, alt: 'Image') if @post.image? %>
+          </div>
+          <div class="post-info-box">
+            <div class="post-t-p-r">
+              <%= react_component 'A_locationDescriptionBlack', {text: @post.title, color: '#000 '} %>
+              <%= react_component 'A_priceTag', {price: @post.price, color: '#4F6DDB '} %>
+              <div class="image">8.8</div>
+            </div>
+            <div class="post-c-t-l">
+              <%= react_component 'A_locationDescription', {text: @post.city, color: '#4F6DDB '} %>
+              <div class="time-by-pass">
+                <img src="/assets/Time.png" alt="">
+                <span>Время тура: <%= @post.timeBypass %></span>
+              </div>
+              <div class="shows">
+                <div class="views">
+                  <img src="/assets/eye.png" alt="">
+                  <span>100 просмотров</span>
+                </div>
+                <div class="visits">
+                  <img src="/assets/portfel.png" alt="">
+                  <span>10 посещений</span>
+                </div>
+              </div>
+            </div>
+            <div class="post-author">
+              <img src="/assets/ProfileAvatarBlue.svg" alt="">
+              <div class="author-username">
+                Автор: <%=  User.find(@post.user_id).username %>
+              </div>
+              <%= link_to 'Профиль', User.find(@post.user_id) %>
+            </div>
+            <div class="likes-favorites">
+              <div class="like">
+                Оценили: <%= @post.likes.count %>
+              </div>
+              <div class="likes">
+                <% if user_signed_in? %>
+                  <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+                  <% if pre_like %>
+                    <%= button_to 'Снять отметку', post_like_path(@post, pre_like), method: :delete %>
+                  <% else %>
+                    <%= button_to 'Нравится', post_likes_path(@post), method: :post %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="favorites">
+                <% if user_signed_in? %>
+                  <% pre_favorite = @post.favorites.find { |favorite| favorite.user_id == current_user.id} %>
+                  <% if pre_favorite %>
+                    <%= button_to 'Удалить из избранного', post_favorite_path(@post, pre_favorite), method: :delete %>
+                  <% else %>
+                    <%= button_to 'Добавить в избранное', post_favorites_path(@post), method: :post %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="edited">
+                <% if current_user.id == @post.user_id || current_user.isadmin == true%>
+                  <%= link_to 'Редактировать', edit_post_path(@post) %>
+                  <%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <p>
-            <strong>Title:</strong>
-            <%= @post.title %>
-          </p>
 
-          <p>
-            <strong>Content:</strong>
-            <%= @post.content.html_safe %>
-          </p>
-          <p>
-            <strong>Country:</strong>
-            <%= @post.country %>
-          </p>
-          <p>
-            <strong>City:</strong>
-            <%= @post.city %>
-          </p>
+<!--      <div class="comment-box">-->
+<!--        <div class="comments">-->
+<!--          <h2>Comments</h2>-->
+          <%#= render @post.comments %>
+<!--        </div>-->
 
-          <p>
-            <strong>Category:</strong>
-            <%= @post.category.name %>
-          </p>
-
-          <p>
-            <strong>Interests:</strong>
-            <%= @post.interests %>
-          </p>
-
-          <p>
-            <strong>Timebypass:</strong>
-            <%= @post.timeBypass %>
-          </p>
-
-          <p>
-            <strong>Price:</strong>
-            <%= @post.price %>
-          </p>
+<!--        <div class="add-comment">-->
+<!--          <h2>Add comment</h2>-->
+          <%# if user_signed_in? %>
+            <%#= render "comments/form" %>
+          <%# else %>
+<!--            <p>Please <%#= link_to 'login', new_user_session_path %> or <%#= link_to 'register', new_user_registration_path %> to comment.</p>-->
+          <%# end %>
+<!--        </div>-->
+<!--      </div>-->
+    </div>
+    <div class="post-content">
+      <div class="day outline-place">
+        1 день
+      </div>
+      <div class="place-box">
+        <div class="time">12:00 <span>Заселение</span></div>
+        <div class="place-info">
+          <div class="place-name-rating">
+            <div class="place-name outline-place">Mercure  hotel centre</div>
+            <div class="place-rating rating-green">9.5</div>
+          </div>
+          <div class="place-additionally">
+            <div class="place-street">ул. октябрьская 18а</div>
+            <div class="place-telephone">+7(920)650-15-00</div>
+            <div class="place-opening">
+              <img src="/assets/Time.png" alt="">
+              Открыто: Круглосуточно
+            </div>
+            <div class="place-site">
+              <img src="/assets/Website.png" alt="">
+              <a href="#">Сайт</a>
+            </div>
+          </div>
+        </div>
+        <div class="place-gallery">
+          <div class="image">
+            <img src="/assets/gallery/gallery-1.jpg" alt="">
+          </div>
+          <div class="image">
+            <img src="/assets/gallery/gallery-2.jpg" alt="">
+          </div>
+          <div class="image-2">
+            <div class="image">
+              <img src="/assets/gallery/gallery-3.jpg" alt="">
+            </div>
+            <div class="image">
+              <img src="/assets/gallery/gallery-4.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="place-about">
+          <div class="place-text">
+            <h1>О месте</h1>
+            <div class="place-title">Описание</div>
+            <div class="place-description">
+              <p>Отель Mercure Nizhny Novgorod Center расположен в Нижнем Новгороде. К услугам гостей фитнес-центр, общий лаундж и бар. Отель находится в нескольких минутах ходьбы от Нижегородского кремля и Большой Покровской улицы, а также в 200 метрах от Нижегородского государственного академического театра драмы имени М. Горького.</p>
+              <p>Все номера оснащены кондиционером и телевизором с плоским экраном и спутниковыми каналами. В собственной ванной комнате каждого номера установлен душ. Во всех номерах установлен письменный стол.</p>
+              <p>Каждое утро сервируется завтрак «шведский стол» с континентальными, вегетарианскими и американскими блюдами. В ресторане отеля Mercure Nizhny Novgorod Center подают блюда интернациональной кухни.</p>
+              <p>Гости могут воспользоваться залом Горького с панорамными окнами, подходящими как для деловых, так и для частных мероприятий. В распоряжении гостей отеля Mercure Nizhny Novgorod Center круглосуточная стойка регистрации и частная подземная парковка.</p>
+            </div>
+          </div>
+          <div class="place-booking">
+            <h1>Номера</h1>
+            <div class="place-booking-price outline-place">ОТ 5 000₽</div>
+            <a href="#" class="place-booking-show">Посмотреть</a>
+          </div>
+        </div>
+        <div class="place-footer">
+          <div class="place-categories">
+            <div class="place-category">
+              <div class="category-circle circle-red">
+                2000
+              </div>
+              <div class="category-description outline-second">минимальная <br> сумма <br> посещения <br> 5500₽</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-1.png" alt="">
+              </div>
+              <div class="category-description outline-second">высокий класс обслуживания</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-2.png" alt="">
+              </div>
+              <div class="category-description outline-second">в центре города</div>
+            </div>
+          </div>
+          <div class="place-comments">
+            <div class="comment-title">
+              <h1>Отзывы(13)</h1>
+              <div class="comment-rating rating-green">9.5</div>
+              <a href="#" class="comment-all outline-second">Все отзывы</a>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Алексей</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Персональный подход к заселению. Дали номер, на верхнем этаже с окнами во двор. Заселили сразу по прибытии, на 30 минут раньше положенного</div>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Михаил</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Прекрасный отзывчивый персонал, чистота и уровень комфорта на уровне, оснащение номеров, новизна обстановки (ковролин, кровати, полотенца)— все соответствует уровню отеля.</div>
+            </div>
+          </div>
+          <div class="place-map">
+            <div class="place-map-image">
+              <a href="#" class="map-link outline-second">Показать на карте</a>
+            </div>
+            <div class="place-map-info">
+              <div class="place-map-address">
+                <div class="place-map-street">ул. октябрьская 18а</div>
+                <div class="place-map-telephone">+7(920)650-15-00</div>
+              </div>
+              <div class="place-map-additionally">
+                <div class="place-map">
+                  <img src="/assets/Time.png" alt="">
+                  Открыто: Круглосуточно
+                </div>
+                <div class="place-map-site">
+                  <img src="/assets/Website.png" alt="">
+                  <a href="#">Сайт</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-
-      <div class="comment-box">
-        <div class="comments">
-          <h2>Comments</h2>
-          <%= render @post.comments %>
+      <div class="place-box">
+        <div class="time">16:00 <span>Дорога до бара, прогулка по набережной</span></div>
+        <div class="place-info">
+          <div class="place-name-rating">
+            <div class="place-name outline-place">вЕРХНЕВОЛЖСКАЯ НАБЕРЕЖНАЯ</div>
+<!--            <div class="place-rating rating-green">9.5</div>-->
+          </div>
+          <div class="place-additionally">
+            <div class="place-street">ПЛ. МИНИНА И ПОЖАРСКОГО</div>
+<!--            <div class="place-telephone">+7(920)650-15-00</div>-->
+            <div class="place-opening">
+              <img src="/assets/Time.png" alt="">
+              Открыто: Круглосуточно
+            </div>
+<!--            <div class="place-site">-->
+<!--              <img src="/assets/Website.png" alt="">-->
+<!--              <a href="#">Сайт</a>-->
+<!--            </div>-->
+          </div>
         </div>
+        <div class="place-gallery">
+          <div class="image">
+            <img src="/assets/gallery/gallery-5.jpg" alt="">
+          </div>
+          <div class="image">
+            <img src="/assets/gallery/gallery-6.jpg" alt="">
+          </div>
+          <div class="image-2">
+            <div class="image">
+              <img src="/assets/gallery/gallery-7.jpg" alt="">
+            </div>
+            <div class="image">
+              <img src="/assets/gallery/gallery-8.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="place-about">
+          <div class="place-text">
+            <h1>О месте</h1>
+            <div class="place-title">Описание</div>
+            <div class="place-description">
+              <p>Гуляя по набережной, можно полюбоваться не только видами реки, но и архитектурными сооружениями, придающими городу его неповторимый купеческий старорусский облик. Прежде всего, это особняк купца Сироткина, который по праву считается лучшим образцом дореволюционного зодчества Нижнего Новгорода. Буквально через три дома находится прекрасная городская усадьба купца Рукавишникова, ныне административное здание Нижегородского Государственного историко-архитектурного музея-заповедника. Бело-голубое строение отличается роскошью отделки и красотой форм.</p>
+              <p>Набережная начинается от пл. Минина, поэтому добраться до нее можно на всех видах транспорта, движущихся в этом направлении. Также можно доехать до противоположного конца набережной — Сенной площади — и прогуляться в обратную сторону.</p>
+            </div>
+          </div>
+        </div>
+        <div class="place-footer">
+          <div class="place-categories">
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-3.png" alt="">
+              </div>
+              <div class="category-description outline-second">красивые пейзажи</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-4.png" alt="">
+              </div>
+              <div class="category-description outline-second">зеленая зона</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-2.png" alt="">
+              </div>
+              <div class="category-description outline-second">в центре города</div>
+            </div>
+          </div>
+          <div class="place-comments">
+            <div class="comment-title">
+              <h1>Отзывы(127)</h1>
+              <div class="comment-rating rating-green">9.5</div>
+              <a href="#" class="comment-all outline-second">Все отзывы</a>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Алексей</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Визитная карточка города, наряду с многими замечательными местами в этом красивом городе. Набережная очень длинная, чтобы пройти её туда и обратно прогулочным шагом, потребуется не менее 1,5 часов. </div>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Михаил</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Просто прогулочная зона, ничего особо примечательного, но открываются замечательные виды на реку. По пути усадьба Рукавишникова, Нижегородский технический университет, Художественный музей, трамплин.</div>
+            </div>
+          </div>
+          <div class="place-map">
+            <div class="place-map-image">
+              <a href="#" class="map-link outline-second">Показать на карте</a>
+            </div>
+            <div class="place-map-info">
+              <div class="place-map-address">
+                <div class="place-map-street">ул. октябрьская 18а</div>
+                <div class="place-map-telephone">+7(920)650-15-00</div>
+              </div>
+              <div class="place-map-additionally">
+                <div class="place-map">
+                  <img src="/assets/Time.png" alt="">
+                  Открыто: Круглосуточно
+                </div>
+                <div class="place-map-site">
+                  <img src="/assets/Website.png" alt="">
+                  <a href="#">Сайт</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <div class="add-comment">
-          <h2>Add comment</h2>
-          <% if user_signed_in? %>
-            <%= render "comments/form" %>
-          <% else %>
-            <p>Please <%= link_to 'login', new_user_session_path %> or <%= link_to 'register', new_user_registration_path %> to comment.</p>
-          <% end %>
+      <div class="place-box">
+        <div class="time">18:00 <span>Вечер в баре «Хмель»</span></div>
+        <div class="place-info">
+          <div class="place-name-rating">
+            <div class="place-name outline-place">Бар «Хмель»</div>
+                        <div class="place-rating rating-green">8.8</div>
+          </div>
+          <div class="place-additionally">
+            <div class="place-street">УЛИЦА МИНИНА, 18Б</div>
+            <div class="place-telephone">+7(920)650-15-00</div>
+            <div class="place-opening">
+              <img src="/assets/Time.png" alt="">
+              Открыто: 10:00 - 24:00
+            </div>
+            <div class="place-site">
+              <img src="/assets/Website.png" alt="">
+              <a href="#">Сайт</a>
+            </div>
+          </div>
+        </div>
+        <div class="place-gallery">
+          <div class="image">
+            <img src="/assets/gallery/gallery-9.jpg" alt="">
+          </div>
+          <div class="image">
+            <img src="/assets/gallery/gallery-10.jpg" alt="">
+          </div>
+          <div class="image-2">
+            <div class="image">
+              <img src="/assets/gallery/gallery-11.png" alt="">
+            </div>
+            <div class="image">
+              <img src="/assets/gallery/gallery-12.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="place-about">
+          <div class="place-text">
+            <h1>О месте</h1>
+            <div class="place-title">Описание</div>
+            <div class="place-description">
+<p>На улице Минина в помещении с потолками высотой семь метров начал работу пивной бар с открытой кухней, длинными деревянными скамьями и не менее длинными рядами бутылок. В «Хмеле» представлено больше 250 сортов крафтового пива — по уверению владельцев, больше всех в городе (если и не так, то действительно много). За барной стойкой — двадцать кранов: разливают бельгийский крепкий эль «Квак», черный британский стаут, пенное из Германии, Голландии, Чехии, Дании и, конечно, России. Еда не так разнообразна. Можно взять бургеры — например, с котлетой из говядины, вишневым конфитюром и беконом (350 р.) или с брусничным соусом и маринованными огурцами (350 р.), свиные ребра с арахисом в китайском стиле (360 р.), тако с говядиной (230 р.), кесадилью со свининой (210 р.), хачапури (310 р.). Есть бизнес-ланчи с супами, салатами и вторым. В дни матчей
+  и крупных спортивных событий показывают трансляции.</p>
+            </div>
+          </div>
+          <div class="place-booking">
+            <h1>Меню</h1>
+            <div class="place-booking-price outline-place">
+              <img src="/assets/menu.png" alt="">
+            </div>
+            <a href="#" class="place-booking-show">Забронировать столик</a>
+          </div>
+        </div>
+        <div class="place-footer">
+          <div class="place-categories">
+            <div class="place-category">
+              <div class="category-circle circle-blue">
+                1000
+              </div>
+              <div class="category-description outline-second">Средний чек 1000₽</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-1.png" alt="">
+              </div>
+              <div class="category-description outline-second">высокие оценки пользователей</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-red">18+</div>
+              <div class="category-description outline-second">не рекомендуется для детей</div>
+            </div>
+          </div>
+          <div class="place-comments">
+            <div class="comment-title">
+              <h1>Отзывы(127)</h1>
+              <div class="comment-rating rating-green">9.5</div>
+              <a href="#" class="comment-all outline-second">Все отзывы</a>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Алексей</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Визитная карточка города, наряду с многими замечательными местами в этом красивом городе. Набережная очень длинная, чтобы пройти её туда и обратно прогулочным шагом, потребуется не менее 1,5 часов. </div>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Михаил</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Просто прогулочная зона, ничего особо примечательного, но открываются замечательные виды на реку. По пути усадьба Рукавишникова, Нижегородский технический университет, Художественный музей, трамплин.</div>
+            </div>
+          </div>
+          <div class="place-map">
+            <div class="place-map-image">
+              <a href="#" class="map-link outline-second">Показать на карте</a>
+            </div>
+            <div class="place-map-info">
+              <div class="place-map-address">
+                <div class="place-map-street">ул. октябрьская 18а</div>
+                <div class="place-map-telephone">+7(920)650-15-00</div>
+              </div>
+              <div class="place-map-additionally">
+                <div class="place-map">
+                  <img src="/assets/Time.png" alt="">
+                  Открыто: Круглосуточно
+                </div>
+                <div class="place-map-site">
+                  <img src="/assets/Website.png" alt="">
+                  <a href="#">Сайт</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day outline-place">
+        <div class="day-circle">
+          2 день
+        </div>
+      </div>
+      <div class="place-box">
+        <div class="time">12:00 <span>Заселение</span></div>
+        <div class="place-info">
+          <div class="place-name-rating">
+            <div class="place-name outline-place">Mercure  hotel centre</div>
+            <div class="place-rating rating-green">9.5</div>
+          </div>
+          <div class="place-additionally">
+            <div class="place-street">ул. октябрьская 18а</div>
+            <div class="place-telephone">+7(920)650-15-00</div>
+            <div class="place-opening">
+              <img src="/assets/Time.png" alt="">
+              Открыто: Круглосуточно
+            </div>
+            <div class="place-site">
+              <img src="/assets/Website.png" alt="">
+              <a href="#">Сайт</a>
+            </div>
+          </div>
+        </div>
+        <div class="place-gallery">
+          <div class="image">
+            <img src="/assets/gallery/gallery-1.jpg" alt="">
+          </div>
+          <div class="image">
+            <img src="/assets/gallery/gallery-2.jpg" alt="">
+          </div>
+          <div class="image-2">
+            <div class="image">
+              <img src="/assets/gallery/gallery-3.jpg" alt="">
+            </div>
+            <div class="image">
+              <img src="/assets/gallery/gallery-4.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="place-about">
+          <div class="place-text">
+            <h1>О месте</h1>
+            <div class="place-title">Описание</div>
+            <div class="place-description">
+              <p>Отель Mercure Nizhny Novgorod Center расположен в Нижнем Новгороде. К услугам гостей фитнес-центр, общий лаундж и бар. Отель находится в нескольких минутах ходьбы от Нижегородского кремля и Большой Покровской улицы, а также в 200 метрах от Нижегородского государственного академического театра драмы имени М. Горького.</p>
+              <p>Все номера оснащены кондиционером и телевизором с плоским экраном и спутниковыми каналами. В собственной ванной комнате каждого номера установлен душ. Во всех номерах установлен письменный стол.</p>
+              <p>Каждое утро сервируется завтрак «шведский стол» с континентальными, вегетарианскими и американскими блюдами. В ресторане отеля Mercure Nizhny Novgorod Center подают блюда интернациональной кухни.</p>
+              <p>Гости могут воспользоваться залом Горького с панорамными окнами, подходящими как для деловых, так и для частных мероприятий. В распоряжении гостей отеля Mercure Nizhny Novgorod Center круглосуточная стойка регистрации и частная подземная парковка.</p>
+            </div>
+          </div>
+          <div class="place-booking">
+            <h1>Номера</h1>
+            <div class="place-booking-price outline-place">ОТ 5 000₽</div>
+            <a href="#" class="place-booking-show">Посмотреть</a>
+          </div>
+        </div>
+        <div class="place-footer">
+          <div class="place-categories">
+            <div class="place-category">
+              <div class="category-circle circle-red">
+                2000
+              </div>
+              <div class="category-description outline-second">минимальная <br> сумма <br> посещения <br> 5500₽</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-1.png" alt="">
+              </div>
+              <div class="category-description outline-second">высокий класс обслуживания</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-2.png" alt="">
+              </div>
+              <div class="category-description outline-second">в центре города</div>
+            </div>
+          </div>
+          <div class="place-comments">
+            <div class="comment-title">
+              <h1>Отзывы(13)</h1>
+              <div class="comment-rating rating-green">9.5</div>
+              <a href="#" class="comment-all outline-second">Все отзывы</a>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Алексей</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Персональный подход к заселению. Дали номер, на верхнем этаже с окнами во двор. Заселили сразу по прибытии, на 30 минут раньше положенного</div>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Михаил</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Прекрасный отзывчивый персонал, чистота и уровень комфорта на уровне, оснащение номеров, новизна обстановки (ковролин, кровати, полотенца)— все соответствует уровню отеля.</div>
+            </div>
+          </div>
+          <div class="place-map">
+            <div class="place-map-image">
+              <a href="#" class="map-link outline-second">Показать на карте</a>
+            </div>
+            <div class="place-map-info">
+              <div class="place-map-address">
+                <div class="place-map-street">ул. октябрьская 18а</div>
+                <div class="place-map-telephone">+7(920)650-15-00</div>
+              </div>
+              <div class="place-map-additionally">
+                <div class="place-map">
+                  <img src="/assets/Time.png" alt="">
+                  Открыто: Круглосуточно
+                </div>
+                <div class="place-map-site">
+                  <img src="/assets/Website.png" alt="">
+                  <a href="#">Сайт</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-box">
+        <div class="time">16:00 <span>Дорога до бара, прогулка по набережной</span></div>
+        <div class="place-info">
+          <div class="place-name-rating">
+            <div class="place-name outline-place">вЕРХНЕВОЛЖСКАЯ НАБЕРЕЖНАЯ</div>
+            <!--            <div class="place-rating rating-green">9.5</div>-->
+          </div>
+          <div class="place-additionally">
+            <div class="place-street">ПЛ. МИНИНА И ПОЖАРСКОГО</div>
+            <!--            <div class="place-telephone">+7(920)650-15-00</div>-->
+            <div class="place-opening">
+              <img src="/assets/Time.png" alt="">
+              Открыто: Круглосуточно
+            </div>
+            <!--            <div class="place-site">-->
+            <!--              <img src="/assets/Website.png" alt="">-->
+            <!--              <a href="#">Сайт</a>-->
+            <!--            </div>-->
+          </div>
+        </div>
+        <div class="place-gallery">
+          <div class="image">
+            <img src="/assets/gallery/gallery-5.jpg" alt="">
+          </div>
+          <div class="image">
+            <img src="/assets/gallery/gallery-6.jpg" alt="">
+          </div>
+          <div class="image-2">
+            <div class="image">
+              <img src="/assets/gallery/gallery-7.jpg" alt="">
+            </div>
+            <div class="image">
+              <img src="/assets/gallery/gallery-8.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="place-about">
+          <div class="place-text">
+            <h1>О месте</h1>
+            <div class="place-title">Описание</div>
+            <div class="place-description">
+              <p>Гуляя по набережной, можно полюбоваться не только видами реки, но и архитектурными сооружениями, придающими городу его неповторимый купеческий старорусский облик. Прежде всего, это особняк купца Сироткина, который по праву считается лучшим образцом дореволюционного зодчества Нижнего Новгорода. Буквально через три дома находится прекрасная городская усадьба купца Рукавишникова, ныне административное здание Нижегородского Государственного историко-архитектурного музея-заповедника. Бело-голубое строение отличается роскошью отделки и красотой форм.</p>
+              <p>Набережная начинается от пл. Минина, поэтому добраться до нее можно на всех видах транспорта, движущихся в этом направлении. Также можно доехать до противоположного конца набережной — Сенной площади — и прогуляться в обратную сторону.</p>
+            </div>
+          </div>
+        </div>
+        <div class="place-footer">
+          <div class="place-categories">
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-3.png" alt="">
+              </div>
+              <div class="category-description outline-second">красивые пейзажи</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-4.png" alt="">
+              </div>
+              <div class="category-description outline-second">зеленая зона</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-2.png" alt="">
+              </div>
+              <div class="category-description outline-second">в центре города</div>
+            </div>
+          </div>
+          <div class="place-comments">
+            <div class="comment-title">
+              <h1>Отзывы(127)</h1>
+              <div class="comment-rating rating-green">9.5</div>
+              <a href="#" class="comment-all outline-second">Все отзывы</a>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Алексей</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Визитная карточка города, наряду с многими замечательными местами в этом красивом городе. Набережная очень длинная, чтобы пройти её туда и обратно прогулочным шагом, потребуется не менее 1,5 часов. </div>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Михаил</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Просто прогулочная зона, ничего особо примечательного, но открываются замечательные виды на реку. По пути усадьба Рукавишникова, Нижегородский технический университет, Художественный музей, трамплин.</div>
+            </div>
+          </div>
+          <div class="place-map">
+            <div class="place-map-image">
+              <a href="#" class="map-link outline-second">Показать на карте</a>
+            </div>
+            <div class="place-map-info">
+              <div class="place-map-address">
+                <div class="place-map-street">ул. октябрьская 18а</div>
+                <div class="place-map-telephone">+7(920)650-15-00</div>
+              </div>
+              <div class="place-map-additionally">
+                <div class="place-map">
+                  <img src="/assets/Time.png" alt="">
+                  Открыто: Круглосуточно
+                </div>
+                <div class="place-map-site">
+                  <img src="/assets/Website.png" alt="">
+                  <a href="#">Сайт</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-box">
+        <div class="time">18:00 <span>Вечер в баре «Хмель»</span></div>
+        <div class="place-info">
+          <div class="place-name-rating">
+            <div class="place-name outline-place">Бар «Хмель»</div>
+            <div class="place-rating rating-green">8.8</div>
+          </div>
+          <div class="place-additionally">
+            <div class="place-street">УЛИЦА МИНИНА, 18Б</div>
+            <div class="place-telephone">+7(920)650-15-00</div>
+            <div class="place-opening">
+              <img src="/assets/Time.png" alt="">
+              Открыто: 10:00 - 24:00
+            </div>
+            <div class="place-site">
+              <img src="/assets/Website.png" alt="">
+              <a href="#">Сайт</a>
+            </div>
+          </div>
+        </div>
+        <div class="place-gallery">
+          <div class="image">
+            <img src="/assets/gallery/gallery-9.jpg" alt="">
+          </div>
+          <div class="image">
+            <img src="/assets/gallery/gallery-10.jpg" alt="">
+          </div>
+          <div class="image-2">
+            <div class="image">
+              <img src="/assets/gallery/gallery-11.png" alt="">
+            </div>
+            <div class="image">
+              <img src="/assets/gallery/gallery-12.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="place-about">
+          <div class="place-text">
+            <h1>О месте</h1>
+            <div class="place-title">Описание</div>
+            <div class="place-description">
+              <p>На улице Минина в помещении с потолками высотой семь метров начал работу пивной бар с открытой кухней, длинными деревянными скамьями и не менее длинными рядами бутылок. В «Хмеле» представлено больше 250 сортов крафтового пива — по уверению владельцев, больше всех в городе (если и не так, то действительно много). За барной стойкой — двадцать кранов: разливают бельгийский крепкий эль «Квак», черный британский стаут, пенное из Германии, Голландии, Чехии, Дании и, конечно, России. Еда не так разнообразна. Можно взять бургеры — например, с котлетой из говядины, вишневым конфитюром и беконом (350 р.) или с брусничным соусом и маринованными огурцами (350 р.), свиные ребра с арахисом в китайском стиле (360 р.), тако с говядиной (230 р.), кесадилью со свининой (210 р.), хачапури (310 р.). Есть бизнес-ланчи с супами, салатами и вторым. В дни матчей
+                и крупных спортивных событий показывают трансляции.</p>
+            </div>
+          </div>
+          <div class="place-booking">
+            <h1>Меню</h1>
+            <div class="place-booking-price outline-place">
+              <img src="/assets/menu.png" alt="">
+            </div>
+            <a href="#" class="place-booking-show">Забронировать столик</a>
+          </div>
+        </div>
+        <div class="place-footer">
+          <div class="place-categories">
+            <div class="place-category">
+              <div class="category-circle circle-blue">
+                1000
+              </div>
+              <div class="category-description outline-second">Средний чек 1000₽</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-1.png" alt="">
+              </div>
+              <div class="category-description outline-second">высокие оценки пользователей</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-red">18+</div>
+              <div class="category-description outline-second">не рекомендуется для детей</div>
+            </div>
+          </div>
+          <div class="place-comments">
+            <div class="comment-title">
+              <h1>Отзывы(127)</h1>
+              <div class="comment-rating rating-green">9.5</div>
+              <a href="#" class="comment-all outline-second">Все отзывы</a>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Алексей</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Визитная карточка города, наряду с многими замечательными местами в этом красивом городе. Набережная очень длинная, чтобы пройти её туда и обратно прогулочным шагом, потребуется не менее 1,5 часов. </div>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Михаил</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Просто прогулочная зона, ничего особо примечательного, но открываются замечательные виды на реку. По пути усадьба Рукавишникова, Нижегородский технический университет, Художественный музей, трамплин.</div>
+            </div>
+          </div>
+          <div class="place-map">
+            <div class="place-map-image">
+              <a href="#" class="map-link outline-second">Показать на карте</a>
+            </div>
+            <div class="place-map-info">
+              <div class="place-map-address">
+                <div class="place-map-street">ул. октябрьская 18а</div>
+                <div class="place-map-telephone">+7(920)650-15-00</div>
+              </div>
+              <div class="place-map-additionally">
+                <div class="place-map">
+                  <img src="/assets/Time.png" alt="">
+                  Открыто: Круглосуточно
+                </div>
+                <div class="place-map-site">
+                  <img src="/assets/Website.png" alt="">
+                  <a href="#">Сайт</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day outline-place">
+        <div class="day-circle">
+          3 день
+        </div>
+      </div>
+      <div class="place-box">
+        <div class="time">12:00 <span>Заселение</span></div>
+        <div class="place-info">
+          <div class="place-name-rating">
+            <div class="place-name outline-place">Mercure  hotel centre</div>
+            <div class="place-rating rating-green">9.5</div>
+          </div>
+          <div class="place-additionally">
+            <div class="place-street">ул. октябрьская 18а</div>
+            <div class="place-telephone">+7(920)650-15-00</div>
+            <div class="place-opening">
+              <img src="/assets/Time.png" alt="">
+              Открыто: Круглосуточно
+            </div>
+            <div class="place-site">
+              <img src="/assets/Website.png" alt="">
+              <a href="#">Сайт</a>
+            </div>
+          </div>
+        </div>
+        <div class="place-gallery">
+          <div class="image">
+            <img src="/assets/gallery/gallery-1.jpg" alt="">
+          </div>
+          <div class="image">
+            <img src="/assets/gallery/gallery-2.jpg" alt="">
+          </div>
+          <div class="image-2">
+            <div class="image">
+              <img src="/assets/gallery/gallery-3.jpg" alt="">
+            </div>
+            <div class="image">
+              <img src="/assets/gallery/gallery-4.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="place-about">
+          <div class="place-text">
+            <h1>О месте</h1>
+            <div class="place-title">Описание</div>
+            <div class="place-description">
+              <p>Отель Mercure Nizhny Novgorod Center расположен в Нижнем Новгороде. К услугам гостей фитнес-центр, общий лаундж и бар. Отель находится в нескольких минутах ходьбы от Нижегородского кремля и Большой Покровской улицы, а также в 200 метрах от Нижегородского государственного академического театра драмы имени М. Горького.</p>
+              <p>Все номера оснащены кондиционером и телевизором с плоским экраном и спутниковыми каналами. В собственной ванной комнате каждого номера установлен душ. Во всех номерах установлен письменный стол.</p>
+              <p>Каждое утро сервируется завтрак «шведский стол» с континентальными, вегетарианскими и американскими блюдами. В ресторане отеля Mercure Nizhny Novgorod Center подают блюда интернациональной кухни.</p>
+              <p>Гости могут воспользоваться залом Горького с панорамными окнами, подходящими как для деловых, так и для частных мероприятий. В распоряжении гостей отеля Mercure Nizhny Novgorod Center круглосуточная стойка регистрации и частная подземная парковка.</p>
+            </div>
+          </div>
+          <div class="place-booking">
+            <h1>Номера</h1>
+            <div class="place-booking-price outline-place">ОТ 5 000₽</div>
+            <a href="#" class="place-booking-show">Посмотреть</a>
+          </div>
+        </div>
+        <div class="place-footer">
+          <div class="place-categories">
+            <div class="place-category">
+              <div class="category-circle circle-red">
+                2000
+              </div>
+              <div class="category-description outline-second">минимальная <br> сумма <br> посещения <br> 5500₽</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-1.png" alt="">
+              </div>
+              <div class="category-description outline-second">высокий класс обслуживания</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-2.png" alt="">
+              </div>
+              <div class="category-description outline-second">в центре города</div>
+            </div>
+          </div>
+          <div class="place-comments">
+            <div class="comment-title">
+              <h1>Отзывы(13)</h1>
+              <div class="comment-rating rating-green">9.5</div>
+              <a href="#" class="comment-all outline-second">Все отзывы</a>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Алексей</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Персональный подход к заселению. Дали номер, на верхнем этаже с окнами во двор. Заселили сразу по прибытии, на 30 минут раньше положенного</div>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Михаил</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Прекрасный отзывчивый персонал, чистота и уровень комфорта на уровне, оснащение номеров, новизна обстановки (ковролин, кровати, полотенца)— все соответствует уровню отеля.</div>
+            </div>
+          </div>
+          <div class="place-map">
+            <div class="place-map-image">
+              <a href="#" class="map-link outline-second">Показать на карте</a>
+            </div>
+            <div class="place-map-info">
+              <div class="place-map-address">
+                <div class="place-map-street">ул. октябрьская 18а</div>
+                <div class="place-map-telephone">+7(920)650-15-00</div>
+              </div>
+              <div class="place-map-additionally">
+                <div class="place-map">
+                  <img src="/assets/Time.png" alt="">
+                  Открыто: Круглосуточно
+                </div>
+                <div class="place-map-site">
+                  <img src="/assets/Website.png" alt="">
+                  <a href="#">Сайт</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-box">
+        <div class="time">16:00 <span>Дорога до бара, прогулка по набережной</span></div>
+        <div class="place-info">
+          <div class="place-name-rating">
+            <div class="place-name outline-place">вЕРХНЕВОЛЖСКАЯ НАБЕРЕЖНАЯ</div>
+            <!--            <div class="place-rating rating-green">9.5</div>-->
+          </div>
+          <div class="place-additionally">
+            <div class="place-street">ПЛ. МИНИНА И ПОЖАРСКОГО</div>
+            <!--            <div class="place-telephone">+7(920)650-15-00</div>-->
+            <div class="place-opening">
+              <img src="/assets/Time.png" alt="">
+              Открыто: Круглосуточно
+            </div>
+            <!--            <div class="place-site">-->
+            <!--              <img src="/assets/Website.png" alt="">-->
+            <!--              <a href="#">Сайт</a>-->
+            <!--            </div>-->
+          </div>
+        </div>
+        <div class="place-gallery">
+          <div class="image">
+            <img src="/assets/gallery/gallery-5.jpg" alt="">
+          </div>
+          <div class="image">
+            <img src="/assets/gallery/gallery-6.jpg" alt="">
+          </div>
+          <div class="image-2">
+            <div class="image">
+              <img src="/assets/gallery/gallery-7.jpg" alt="">
+            </div>
+            <div class="image">
+              <img src="/assets/gallery/gallery-8.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="place-about">
+          <div class="place-text">
+            <h1>О месте</h1>
+            <div class="place-title">Описание</div>
+            <div class="place-description">
+              <p>Гуляя по набережной, можно полюбоваться не только видами реки, но и архитектурными сооружениями, придающими городу его неповторимый купеческий старорусский облик. Прежде всего, это особняк купца Сироткина, который по праву считается лучшим образцом дореволюционного зодчества Нижнего Новгорода. Буквально через три дома находится прекрасная городская усадьба купца Рукавишникова, ныне административное здание Нижегородского Государственного историко-архитектурного музея-заповедника. Бело-голубое строение отличается роскошью отделки и красотой форм.</p>
+              <p>Набережная начинается от пл. Минина, поэтому добраться до нее можно на всех видах транспорта, движущихся в этом направлении. Также можно доехать до противоположного конца набережной — Сенной площади — и прогуляться в обратную сторону.</p>
+            </div>
+          </div>
+        </div>
+        <div class="place-footer">
+          <div class="place-categories">
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-3.png" alt="">
+              </div>
+              <div class="category-description outline-second">красивые пейзажи</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-4.png" alt="">
+              </div>
+              <div class="category-description outline-second">зеленая зона</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-2.png" alt="">
+              </div>
+              <div class="category-description outline-second">в центре города</div>
+            </div>
+          </div>
+          <div class="place-comments">
+            <div class="comment-title">
+              <h1>Отзывы(127)</h1>
+              <div class="comment-rating rating-green">9.5</div>
+              <a href="#" class="comment-all outline-second">Все отзывы</a>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Алексей</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Визитная карточка города, наряду с многими замечательными местами в этом красивом городе. Набережная очень длинная, чтобы пройти её туда и обратно прогулочным шагом, потребуется не менее 1,5 часов. </div>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Михаил</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Просто прогулочная зона, ничего особо примечательного, но открываются замечательные виды на реку. По пути усадьба Рукавишникова, Нижегородский технический университет, Художественный музей, трамплин.</div>
+            </div>
+          </div>
+          <div class="place-map">
+            <div class="place-map-image">
+              <a href="#" class="map-link outline-second">Показать на карте</a>
+            </div>
+            <div class="place-map-info">
+              <div class="place-map-address">
+                <div class="place-map-street">ул. октябрьская 18а</div>
+                <div class="place-map-telephone">+7(920)650-15-00</div>
+              </div>
+              <div class="place-map-additionally">
+                <div class="place-map">
+                  <img src="/assets/Time.png" alt="">
+                  Открыто: Круглосуточно
+                </div>
+                <div class="place-map-site">
+                  <img src="/assets/Website.png" alt="">
+                  <a href="#">Сайт</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-box">
+        <div class="time">18:00 <span>Вечер в баре «Хмель»</span></div>
+        <div class="place-info">
+          <div class="place-name-rating">
+            <div class="place-name outline-place">Бар «Хмель»</div>
+            <div class="place-rating rating-green">8.8</div>
+          </div>
+          <div class="place-additionally">
+            <div class="place-street">УЛИЦА МИНИНА, 18Б</div>
+            <div class="place-telephone">+7(920)650-15-00</div>
+            <div class="place-opening">
+              <img src="/assets/Time.png" alt="">
+              Открыто: 10:00 - 24:00
+            </div>
+            <div class="place-site">
+              <img src="/assets/Website.png" alt="">
+              <a href="#">Сайт</a>
+            </div>
+          </div>
+        </div>
+        <div class="place-gallery">
+          <div class="image">
+            <img src="/assets/gallery/gallery-9.jpg" alt="">
+          </div>
+          <div class="image">
+            <img src="/assets/gallery/gallery-10.jpg" alt="">
+          </div>
+          <div class="image-2">
+            <div class="image">
+              <img src="/assets/gallery/gallery-11.png" alt="">
+            </div>
+            <div class="image">
+              <img src="/assets/gallery/gallery-12.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="place-about">
+          <div class="place-text">
+            <h1>О месте</h1>
+            <div class="place-title">Описание</div>
+            <div class="place-description">
+              <p>На улице Минина в помещении с потолками высотой семь метров начал работу пивной бар с открытой кухней, длинными деревянными скамьями и не менее длинными рядами бутылок. В «Хмеле» представлено больше 250 сортов крафтового пива — по уверению владельцев, больше всех в городе (если и не так, то действительно много). За барной стойкой — двадцать кранов: разливают бельгийский крепкий эль «Квак», черный британский стаут, пенное из Германии, Голландии, Чехии, Дании и, конечно, России. Еда не так разнообразна. Можно взять бургеры — например, с котлетой из говядины, вишневым конфитюром и беконом (350 р.) или с брусничным соусом и маринованными огурцами (350 р.), свиные ребра с арахисом в китайском стиле (360 р.), тако с говядиной (230 р.), кесадилью со свининой (210 р.), хачапури (310 р.). Есть бизнес-ланчи с супами, салатами и вторым. В дни матчей
+                и крупных спортивных событий показывают трансляции.</p>
+            </div>
+          </div>
+          <div class="place-booking">
+            <h1>Меню</h1>
+            <div class="place-booking-price outline-place">
+              <img src="/assets/menu.png" alt="">
+            </div>
+            <a href="#" class="place-booking-show">Забронировать столик</a>
+          </div>
+        </div>
+        <div class="place-footer">
+          <div class="place-categories">
+            <div class="place-category">
+              <div class="category-circle circle-blue">
+                1000
+              </div>
+              <div class="category-description outline-second">Средний чек 1000₽</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-green">
+                <img src="/assets/circle-icon-1.png" alt="">
+              </div>
+              <div class="category-description outline-second">высокие оценки пользователей</div>
+            </div>
+            <div class="place-category">
+              <div class="category-circle circle-red">18+</div>
+              <div class="category-description outline-second">не рекомендуется для детей</div>
+            </div>
+          </div>
+          <div class="place-comments">
+            <div class="comment-title">
+              <h1>Отзывы(127)</h1>
+              <div class="comment-rating rating-green">9.5</div>
+              <a href="#" class="comment-all outline-second">Все отзывы</a>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Алексей</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Визитная карточка города, наряду с многими замечательными местами в этом красивом городе. Набережная очень длинная, чтобы пройти её туда и обратно прогулочным шагом, потребуется не менее 1,5 часов. </div>
+            </div>
+            <div class="comment">
+              <div class="comment-info">
+                <img src="/assets/ProfileAvatarBlue.svg" alt="">
+                <div class="commentator">Михаил</div>
+                <div class="commentator-rating"></div>
+              </div>
+              <div class="comment-content">Просто прогулочная зона, ничего особо примечательного, но открываются замечательные виды на реку. По пути усадьба Рукавишникова, Нижегородский технический университет, Художественный музей, трамплин.</div>
+            </div>
+          </div>
+          <div class="place-map">
+            <div class="place-map-image">
+              <a href="#" class="map-link outline-second">Показать на карте</a>
+            </div>
+            <div class="place-map-info">
+              <div class="place-map-address">
+                <div class="place-map-street">ул. октябрьская 18а</div>
+                <div class="place-map-telephone">+7(920)650-15-00</div>
+              </div>
+              <div class="place-map-additionally">
+                <div class="place-map">
+                  <img src="/assets/Time.png" alt="">
+                  Открыто: Круглосуточно
+                </div>
+                <div class="place-map-site">
+                  <img src="/assets/Website.png" alt="">
+                  <a href="#">Сайт</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
+</div>
 </div>
